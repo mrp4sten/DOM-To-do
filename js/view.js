@@ -13,6 +13,11 @@ export default class View {
     this.model = model;
   }
 
+  render() {
+    const todos = this.model.getTodos();
+    todos.forEach((todo) => this.createRow(todo));
+  }
+
   addTodo(title, description) {
     const todo = this.model.addTodo(title, description);
     this.createRow(todo);
@@ -40,7 +45,7 @@ export default class View {
       <button class="btn btn-primary mb-1">
         <i class="fa fa-pencil"></i>
       </button>
-    </td> 
+    </td>
     `;
 
     const checkbox = document.createElement('input');
