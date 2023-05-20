@@ -10,10 +10,15 @@ export default class Modal {
     this.addBtn.addEventListener('click', () => {
       if (this.title.value === '' || this.description.value === '') {
         this.alert.show('Title & Description couldnt be empty');
-        console.error('ERROR');
       } else {
         $('#modal').modal('toggle');
       }
     });
+  }
+
+  setValues(todo) {
+    this.title.value = todo.title;
+    this.description.value = todo.description;
+    this.completed.checked = todo.completed;
   }
 }

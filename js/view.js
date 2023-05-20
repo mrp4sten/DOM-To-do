@@ -58,7 +58,7 @@ export default class View {
     editBtn.innerHTML = '<i class="fa fa-pencil"></i>';
     editBtn.setAttribute('data-toggle', 'modal');
     editBtn.setAttribute('data-target', '#modal');
-    editBtn.onclick = () => console.log('Opening Modal');
+    editBtn.onclick = () => this.modal.setValues(todo);
     row.children[3].appendChild(editBtn);
 
     const removeBtn = document.createElement('button');
