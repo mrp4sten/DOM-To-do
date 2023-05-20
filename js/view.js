@@ -6,6 +6,7 @@ export default class View {
     this.table = document.getElementById('table');
     this.addTodoForm = new AddTodo();
     this.modal = new Modal();
+    this.modal.onClick((id, values) => this.editTodo(id, values));
     this.addTodoForm.onClick((title, description) =>
       this.addTodo(title, description)
     );
@@ -27,6 +28,14 @@ export default class View {
 
   handleCompleted(id) {
     this.model.toggleCompleted(id);
+  }
+
+  editTodo(id, values) {
+    this.model.editTodo(id, values);
+    const row = document.getElementById(id);
+    row.children[0].innerText = values.title;
+    row.children[1].innerText = values.description;
+    row.children[2].children[0].checked = values.completed;
   }
 
   removeTodo(id) {
