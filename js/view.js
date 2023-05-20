@@ -1,9 +1,11 @@
 import AddTodo from './components/add-todo.js';
+import Modal from './components/modal.js';
 export default class View {
   constructor() {
     this.model = null;
     this.table = document.getElementById('table');
     this.addTodoForm = new AddTodo();
+    this.modal = new Modal();
     this.addTodoForm.onClick((title, description) =>
       this.addTodo(title, description)
     );
@@ -42,9 +44,6 @@ export default class View {
     <td class="text-center">
     </td>
     <td class="text-right">
-      <button class="btn btn-primary mb-1">
-        <i class="fa fa-pencil"></i>
-      </button>
     </td>
     `;
 
@@ -53,6 +52,14 @@ export default class View {
     checkbox.checked = todo.completed;
     checkbox.onclick = () => this.handleCompleted(todo.id);
     row.children[2].appendChild(checkbox);
+
+    const editBtn = document.createElement('button');
+    editBtn.classList.add('btn', 'btn-primary', 'mb-1', 'ml-1');
+    editBtn.innerHTML = '<i class="fa fa-pencil"></i>';
+    editBtn.setAttribute('data-toggle', 'modal');
+    editBtn.setAttribute('data-target', '#modal');
+    editBtn.onclick = () => console.log('Opening Modal');
+    row.children[3].appendChild(editBtn);
 
     const removeBtn = document.createElement('button');
     removeBtn.classList.add('btn', 'btn-danger', 'mb-1', 'ml-1');
